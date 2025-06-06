@@ -1,0 +1,296 @@
+【JavaSilverNote】
+
+１．基礎知識
+    JDKは、様々なベンダから有償・無償問わず提供されている
+    
+    main()メソッドの引数はString配列限定
+    (文法上間違っていなければコンパイルエラーにはならない)
+
+    package文は1行のみ
+    import文は複数行可
+    package -> importの順で書く
+
+    import文の「＊」はすべての意味
+
+    import文はクラスファイル名まで記述
+    もしくは、「パッケージ名.*」
+
+
+
+７．例外処理
+    RuntimeException系は任意
+    Exception系は例外処理必須
+
+    スーパークラスのメソッドに throws がついている場合は、
+    継承先では、同じthrows文 or 子クラスthrows文 or つけない
+
+    例外がスローされる場合は、そこで処理が止まる。
+    catchがある場合は、そこから処理が続く
+
+    エラーのthrowには、throws　または　try catchのどちらかが必要
+    try catch文が入るか、mainまでthrowsをつなげるかのどちらか
+    throws -> try catch
+    throws -> throws -> throws(mainメソッド)
+
+    try 内のローカル変数はcatchで使えない。
+
+    for文でも、例外が起こるまでは正常に動き、例外が起こるとそこで止まる
+
+    catchが複数の場合は、細かいものを先に書く。
+    (大まかな例外を先に書くと、下のcatchに処理が回らないため)
+
+    処理順も try -> catch -> finally
+
+
+８．モジュール
+    モジュールとは、パッケージの上位概念(パッケージをまとめたもの)
+
+
+    〇モジュール定義ファイル
+        名前は「module-info.java」「module-info.class」で固定
+
+        exports 外部公開するパッケージ
+        resuires 必要としているモジュール名
+
+        requests java.base は暗黙的に宣言されている
+
+
+        〇コマンド
+        jdeps [classファイル名]or[JARファイル名]
+            -> 依存関係を調べるコマンド(依存するモジュール名、必要とするパッケージなど)
+        
+        java --show-module-resolution
+            -> モジュールの解決の様子を出力
+        
+
+            39/80
+            
+１．Ａ                  ×　
+        ＪＲＥのインストールは不要
+        
+        IDEは様々。
+        また、IDEセットアップの後にJDKをインストールする手順を設定可能
+
+        JDKはJava開発者が必要に応じてセットアップするのが基本
+        Javaの実行のみであれば、JREのみで可能
+        JREは、カスタマイズしたものをアプリに同梱させるのが推奨
+        JDKにJREのカスタマイズツールが提供されている
+
+２．Ａ                  〇
+３．Ｄ                  ×　
+        main()メソッドはStaticのため、static変数しか直接アクセスはできない
+        継承関係のためprotected変数は利用可能
+        private変数は不可、public変数は可
+        
+４．Ｂ                  〇
+        ダブルクォーテーションで囲えばそれが一くぎり
+        通常は空白くぎり
+        アウトオブバウンスは実行時エラー
+
+５．Ａ                  ×
+        javac 〇〇.java     (.javaをつける)
+        java 〇〇           (.classはつけない)
+
+        また、他に
+        java 〇〇.java
+        で直接実行できる(最初に見つかったクラスのmain()メソッドを探して呼び出そうとする)
+
+６．Ｄ                  ×
+        package文がないときは、「無名パッケージ」に属する(属していないわけではない)
+        java.langは基本パッケージなので、importは不要
+        
+        mainメソッドの引数は可変長配列で問題ない
+
+７．Ｄ                  〇
+        二次元配列の添え字アクセスは、
+        変数名[][]
+
+８．Ｃ                  〇
+        中身がnullでも１要素
+        nullにlengthなどを使うと、実行時エラー
+
+９．Ｂ                  〇
+        拡張for文のvar は配列の中の型
+
+１０．Ｃ，Ｄ，Ｇ，Ｈ    ×
+        var での配列は、明示的に型を指定する必要がある
+        配列の大きさを指定する必要がある
+        数値の型違いに気を付ける！
+
+１１．Ａ                ×
+        インスタンス変数に var は使用できない。
+        var は予約語ではない
+        var の初期値は型推論できるものである必要がある
+
+１２．Ｄ                〇
+１３．Ｃ                ×
+        「〇〇を格納した《データ型》のオブジェクトの数」 -> 「参照先が何個あるのか」
+
+
+
+
+
+１４．Ｅ                〇
+        データ型に互換性があれば、比較可能
+        データの間に「_」を入れても問題ない
+
+１５．Ｃ                〇
+        足し算の場合、左から順に計算される
+        int と String の足し算をする場合は、どちらも文字列として、足し算が行われる
+
+１６．Ｃ                〇
+        switchの式は
+            ・char
+            ・byte
+            ・short
+            ・int
+            (前述のラッパークラス)
+            ・enum
+            ・String
+        が使用可能
+
+１７．Ｅ
+        switchのcase は「定数」でなければならない。
+        case 中での計算は可(定数なら)
+        また、式と型が異なるとエラー
+
+１８．Ａ                ×
+        Math.round()メソッド
+            ・public static long round(double a)
+            ・public static int round(float a)
+            ・引数は一つ
+            ・四捨五入で整数にする
+
+１９．Ｂ
+        main()メソッドの「String[] args」は中に何も入ってなくても、Lengthなどでエラーにならない
+        ローカル変数は明示的な初期化が必要
+        if文中の初期化だけでは通らない場合もあるので不可
+
+２０．Ｃ                〇
+        累乗は「Math.pow()メソッド」を使う。
+        public static double pow(double a, double b)
+        a -> 底(累乗したい数)
+        b -> 指数(累乗の回数)
+
+２１．Ｅ
+        文字列の切り抜きは「String.substring()メソッド」を使う
+        ・public String substring(int begin [,int end])
+        ・begin -> 切り取りの最初の文字の添え字
+        ・end -> 切り取りの最後の文字の添え字 + 1
+
+２２．Ｂ
+        StringBilderクラスは文字列に対する操作ができる
+        https://docs.oracle.com/javase/jp/8/docs/api/java/lang/StringBuilder.html
+
+２３．Ｄ
+        public char charAt(int index)
+        文字列からindex番の添え字の文字を切り抜く
+
+        Character.isAlphabetic(int i)
+        i -> 文字の番号(charを入れると暗黙的にキャストされる)
+        アルファベットか否かの判定
+
+        Character.isLowerCase(int i);
+        i -> 文字の番号(charを入れると暗黙的にキャストされる)
+        小文字か否かの判定
+
+        Character.isDigit(char ch);
+        ch -> char文字(数字を入れると暗黙的にキャストされる)
+        数字か否かの判定
+
+        public boolean startsWith(String prefix [,int offset])
+        public boolean endsWith(String suffix)
+        文字列の最初・最後それぞれに指定した文字列が入っているかどうかを判定する
+        startsWithはoffsetで判定開始位置を指定できる
+
+２４．Ｂ                〇
+        「＆＆」は右辺でfalseだった場合は、左辺は判定されない
+
+２５．Ｅ
+        subStringの使い方
+        break文のありなし
+
+２６．Ｂ
+        「｜」はビット演算(論理和)
+        ビット演算は整数値で使用でき、Stringでは使用できない。
+
+２７．Ａ
+        int += Integer　は問題ない(Boxing)
+        Stringbilderをしていすると暗黙的にtoString()メソッドを探して呼び出す
+        基本型は値渡しなので、値が変わらない
+        参照型は参照渡しなので、値が変化する
+
+２８．Ｂ                〇
+２９．Ａ                〇
+        String.concat
+        public String concat(String str)
+        Stringの中身に引数の文字列をつなげて戻り値として返す
+
+        String.replace
+        public String replace(char oldChar,char newChar)
+        Stringの中のすべての oldChar文字 を newChar文字 に置き換える
+
+３０．Ｅ                〇
+３１．Ｂ                〇
+        for文は
+        for(;条件式;変化式)の形式でも使える
+        前置インクリメントは、＋１してから処理
+        後置だと処理してから＋１
+３２．Ｄ
+３３．Ｃ                〇
+３４．Ｅ                〇
+３５．Ａ
+３６．Ａ
+３７．Ｅ
+３８．Ａ，Ｂ            〇
+３９．Ｂ
+４０．Ｃ
+４１．Ｃ                〇
+４２．Ｄ                〇
+４３．Ｂ                〇
+４４．Ｂ，Ｄ
+４５．Ｂ                〇
+４６．Ｅ
+４７．Ｄ
+４８．Ａ                〇
+４９．Ｅ                〇
+５０．Ｃ                〇
+５１．Ｂ
+５２．Ａ，Ｂ            〇
+５３．Ｃ
+５４．Ｃ                〇
+５５．Ａ
+５６．Ｄ
+５７．Ａ，Ｃ，Ｄ
+５８．Ａ
+５９．Ａ
+６０．Ｅ
+６１．Ａ，Ｃ
+６２．Ｄ
+６３．Ｃ
+６４．Ｅ                〇
+６５．Ｄ                〇
+６６．Ｄ                〇
+６７．Ｅ
+６８．Ａ                〇
+６９．Ｅ
+７０．Ｂ，Ｄ            〇
+７１．Ｄ
+７２．Ｃ
+７３．Ａ，Ｄ            〇
+７４．Ｄ                〇
+７５．Ｂ，Ｄ，Ｆ
+７６．Ａ                〇
+７７．Ｂ                〇
+７８．Ｄ                〇
+７９．Ａ                〇
+８０．Ｄ                〇
+
+
+可変長引数
+static系
+値コピー参照コピー
+ガベージコレクタ
+コンストラクタで定数を初期化
+メソッドの呼び出し
+変数のスコープ
