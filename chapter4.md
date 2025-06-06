@@ -6,6 +6,8 @@
 
 ### 1. 省略形
 
+<br>
+
 &emsp; For文の各式は、省略することができます。
 
 【例文】
@@ -16,6 +18,8 @@ for ( ; i1 < 5 ; i1++) { }          // 初期化式の省略
 for ( int i2 = 0 ; ; i2++) { }      // 条件式の省略（無限ループ）
 for ( int i3 = 0 ; i3 < 5 ; ) { }   // 変化式の省略
 ```
+
+<br>
 
 > [!Important]
 >
@@ -70,20 +74,22 @@ for ( int i3 = 0 ; i3 < 5 ; ) { }   // 変化式の省略
 
 ### 1. ラベル
 
+<br>
+
 &emsp; 繰り返し文に名前を付けることで、 break 文 continue 文の対象をネストの外側の繰り返し文にすることができる機能
 
 <br>
 
 **【構文】ラベルを使った繰り返し制御**
 
-&emsp; ラベル名 :
-&emsp; for(初期化式 ; 条件式 ; 変化式) {
-&emsp; &emsp; …
-&emsp; &emsp; for(初期化式 ; 条件式 ; 変化式) {
-&emsp; &emsp; &emsp; …
-&emsp; &emsp; &emsp; break ラベル名 ;
-&emsp; &emsp; }
-&emsp; }
+&emsp; ラベル名 :                               <br>
+&emsp; for(初期化式 ; 条件式 ; 変化式) {        <br>
+&emsp; &emsp; …                                 <br>
+&emsp; &emsp; for(初期化式 ; 条件式 ; 変化式) { <br>
+&emsp; &emsp; &emsp; …                          <br>
+&emsp; &emsp; &emsp; break ラベル名 ;           <br>
+&emsp; &emsp; }                                 <br>
+&emsp; }                                        <br>
 
 &emsp; 内側ではなく、直接、外側のfor文から抜け出せる
 
