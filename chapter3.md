@@ -318,6 +318,8 @@
 
 ### 2. ラッパークラス
 
+<br>
+
 &emsp; 基本データ型を参照型として扱う専用のクラス
 
 |基本データ型|対応するラッパークラス|
@@ -336,6 +338,8 @@
 <br><br>
 
 ### 3. BoxingとUnboxing
+
+<br>
 
 **Boxsing**
 &emsp; &emsp; 基本データ型からラッパークラスへの自動変換
@@ -401,19 +405,23 @@ bool = num >= 10 ? true : false;
 
 ### 2. switch文
 
+<br>
+
 **【構文】switch文**
 
-&emsp; switch( 式 ) {
-&emsp; case 定数１:
-&emsp; &emsp; &emsp; 処理１;
-&emsp; case 定数２:
-&emsp; &emsp; &emsp; 処理２;
-&emsp; &emsp; ・
-&emsp; &emsp; ・
-&emsp; &emsp; ・
-&emsp; default :
-&emsp; &emsp; &emsp; 処理文
+&emsp; switch( 式 ) {           <br>
+&emsp; &emsp;case 定数１:       <br>
+&emsp; &emsp; &emsp; 処理１;    <br>
+&emsp; &emsp;case 定数２:       <br>
+&emsp; &emsp; &emsp; 処理２;    <br>
+&emsp; &emsp;&emsp; ・          <br>
+&emsp; &emsp;&emsp; ・          <br>
+&emsp; &emsp;&emsp; ・          <br>
+&emsp; &emsp;default :          <br>
+&emsp; &emsp; &emsp; 処理文     <br>
 &emsp; }
+
+<br>
 
 > [!Warning]
 > **式に入るクラスは以下に限られる**

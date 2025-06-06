@@ -78,8 +78,6 @@ for ( int i3 = 0 ; i3 < 5 ; ) { }   // 変化式の省略
 
 &emsp; 繰り返し文に名前を付けることで、 break 文 continue 文の対象をネストの外側の繰り返し文にすることができる機能
 
-<br>
-
 **【構文】ラベルを使った繰り返し制御**
 
 &emsp; ラベル名 :                               <br>
@@ -94,6 +92,7 @@ for ( int i3 = 0 ; i3 < 5 ; ) { }   // 変化式の省略
 &emsp; 内側ではなく、直接、外側のfor文から抜け出せる
 
 **【例】**
+
 ```java
 1.  public class Main {
 2.      public static void main(String[] args) {
